@@ -1,24 +1,20 @@
-class Negotiation {
+import { isEquals } from './IsEquals';
+
+export class Negotiation implements isEquals<Negotiation> {
 
     constructor(
-        private _date: Date,
-        private _quantity: number,
-        private _value: number) {
-    }
-
-    get date() {
-        return this._date;
-    }
-
-    get quantity() {
-        return this._quantity;
-    }
-
-    get value() {
-        return this._value;
+        readonly date: Date,
+        readonly quantity: number,
+        readonly value: number) {
     }
 
     get volume() {
-        return this._quantity* this._value;
+        return this.quantity* this.value;
+    }
+
+    isEqual(negotiation: Negotiation): boolean {
+        return this.date.getDate() == negotiation.date.getDate()
+            && this.date.getMonth() == negotiation.date.getMonth()
+            && this.date.getFullYear() == negotiation.date.getFullYear()
     }
 }
